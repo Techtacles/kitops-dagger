@@ -23,7 +23,7 @@ jobs:
         with:
           version: "latest"
           verb: call --registry ghcr.io
-          module: https://github.com/Techtacles/kitops-dagger
+          module: github.com/jozu-ai/modelkit-factory/modules/kit@be110f46791083f69c44a509a7d2a667da50d6e3
           args: with-auth --username techtacles --password env:$PAT pack --directory . --reference ghcr.io/techtacles/kitops-dagger:champion --kitfile Kitfile push --reference ghcr.io/techtacles/kitops-dagger:champion
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
