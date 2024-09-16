@@ -19,10 +19,6 @@ jobs:
             kit version
             kit unpack ghcr.io/jozu-ai/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
     
-      - name: test
-        run: |
-            ls
-            pwd
 
       - name: Call Dagger Function
         uses: dagger/dagger-for-github@v6
