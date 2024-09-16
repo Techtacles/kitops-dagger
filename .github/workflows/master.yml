@@ -18,8 +18,6 @@ jobs:
         run: |
             kit version
             kit unpack ghcr.io/jozu-ai/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
-        env:
-            PAT: ${{ secrets.KIT_PAT }}
     
       - name: test
         run: |
@@ -32,8 +30,8 @@ jobs:
           version: "latest"
           verb: call --registry ghcr.io
           module: github.com/jozu-ai/modelkit-factory/modules/kit@be110f46791083f69c44a509a7d2a667da50d6e3
-          args: pack --directory . --reference ghcr.io/techtacles/kitops-dagger:$TAG --kitfile Kitfile push --reference ghcr.io/techtacles/kitops-dagger:$TAG
+          args: with-auth --username techtacles --password env:$KIT_PAT pack --directory . --reference ghcr.io/techtacles/kitops-dagger:$TAG --kitfile Kitfile push --reference ghcr.io/techtacles/kitops-dagger:$TAG
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
-            PAT: ${{ secrets.KIT_PAT }}
+            KIT_PAT: ${{ secrets.KIT_PAT }}
             TAG: champion
