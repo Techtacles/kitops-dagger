@@ -12,14 +12,18 @@ jobs:
         uses: jozu-ai/gh-kit-setup@v1.0.0
 
       - name: Run kit unpack
-        run: kit unpack ghcr.io/jozu-ai/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
+        run: |
+            kit version
+            kit unpack ghcr.io/jozu-ai/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
+        env:
+            PAT: ${{ secrets.KIT_PAT }}
 
       - name: Call Dagger Function
         uses: dagger/dagger-for-github@v6
         with:
           version: "latest"
           verb: call --registry ghcr.io
-          module: dagger
+          module: https://github.com/Techtacles/kitops-dagger
           args: with-auth --username techtacles --password env:$PAT pack --directory . --reference ghcr.io/techtacles/kitops-dagger:champion --kitfile Kitfile push --reference ghcr.io/techtacles/kitops-dagger:champion
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
