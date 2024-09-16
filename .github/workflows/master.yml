@@ -8,6 +8,9 @@ jobs:
     name: Run Dagger Pipeline
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Install Kit
         uses: jozu-ai/gh-kit-setup@v1.0.0
 
