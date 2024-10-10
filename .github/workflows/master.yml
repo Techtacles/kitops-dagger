@@ -32,4 +32,4 @@ jobs:
             KIT_PAT: ${{ secrets.KIT_PAT }}
             JOZU_PASS: ${{ secrets.JOZU_PASSWORD }}
             JOZU_EMAIL: ${{ secrets.JOZU_EMAIL }}
-            TAG: champion
+            TAG: latest
