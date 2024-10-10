@@ -16,6 +16,8 @@ jobs:
 
       - name: Run kit unpack
         run: |
+            git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+            env GIT_TERMINAL_PROMPT=1
             kit version
             kit unpack jozu.ml/jozu/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
     
