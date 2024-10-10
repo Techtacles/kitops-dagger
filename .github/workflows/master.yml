@@ -16,8 +16,6 @@ jobs:
 
       - name: Run kit unpack
         run: |
-            git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-            env GIT_TERMINAL_PROMPT=1
             kit version
             kit unpack jozu.ml/jozu/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
     
@@ -27,7 +25,7 @@ jobs:
         with:
           version: "latest"
           verb: call --registry jozu.ml
-          module: github.com/jozu-ai/modelkit-factory/modules/kit@be110f46791083f69c44a509a7d2a667da50d6e3
+          module: github.com/jozu-ai/daggerverse/kit@be110f46791083f69c44a509a7d2a667da50d6e3
           args: with-auth --username $JOZU_EMAIL --password env:JOZU_PASS pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
