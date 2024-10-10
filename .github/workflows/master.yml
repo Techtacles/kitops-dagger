@@ -26,7 +26,7 @@ jobs:
           version: "latest"
           verb: call --registry jozu.ml
           module: github.com/jozu-ai/modelkit-factory/modules/kit@be110f46791083f69c44a509a7d2a667da50d6e3
-          args: with-auth --username emmanueloffisongetim --password env:KIT_PAT pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
+          args: with-auth --username techtacles --password env:KIT_PAT pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
             KIT_PAT: ${{ secrets.KIT_PAT }}
