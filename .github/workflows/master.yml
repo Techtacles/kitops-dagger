@@ -3,6 +3,13 @@ on:
   push:
     branches: [master]
 
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+  issues: write
+  actions: write
+  
 jobs:
   run-dagger:
     name: Run Dagger Pipeline
