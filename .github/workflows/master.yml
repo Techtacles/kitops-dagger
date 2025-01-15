@@ -32,7 +32,7 @@ jobs:
           version: 0.15.1
           verb: call --registry jozu.ml
           module: github.com/jozu-ai/daggerverse/kit
-          args: with-auth --username $JOZU_EMAIL --password env:JOZU_PASS pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --plain-http -v--reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
+          args: with-auth --username $JOZU_EMAIL --password env:JOZU_PASS pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
             KIT_PAT: ${{ secrets.KIT_PAT }}
