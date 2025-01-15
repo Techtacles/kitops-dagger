@@ -2,13 +2,6 @@ name: dagger
 on:
   push:
     branches: [master]
-
-permissions:
-  id-token: write
-  contents: write
-  packages: write
-  actions: write
-
 jobs:
   run-dagger:
     name: Run Dagger Pipeline
@@ -16,20 +9,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Install Kit
         uses: jozu-ai/gh-kit-setup@v1.0.0
-
       - name: Run kit unpack
         run: |
             kit version
             kit unpack jozu.ml/jozu/phi3:3.8b-mini-instruct-4k-q4_K_M --model -d models/Phi-3-mini-4k-instruct-q4.gguf
-    
 
       - name: Call Dagger Function
         uses: dagger/dagger-for-github@v6
         with:
-          version: 0.15.1
+          version: "latest"
           verb: call --registry jozu.ml
           module: github.com/jozu-ai/daggerverse/kit
           args: with-auth --username $JOZU_EMAIL --password env:JOZU_PASS pack --directory . --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG --kitfile Kitfile push --reference jozu.ml/emmanueloffisongetim/llm_repo:$TAG
@@ -38,4 +28,4 @@ jobs:
             KIT_PAT: ${{ secrets.KIT_PAT }}
             JOZU_PASS: ${{ secrets.JOZU_PASSWORD }}
             JOZU_EMAIL: ${{ secrets.JOZU_EMAIL }}
-            TAG: latest
+            TAG: champion
